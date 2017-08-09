@@ -61,6 +61,12 @@ class GameScene: SKScene {
         hero.physicsBody?.contactTestBitMask = Bodytype.Door
         hero.physicsBody?.collisionBitMask = 0
         
+        castleDoor.physicsBody = SKPhysicsBody(rectangleOf: castleDoor.size)
+        castleDoor.physicsBody?.isDynamic = true
+        castleDoor.physicsBody?.categoryBitMask = Bodytype.Door
+        hero.physicsBody?.contactTestBitMask = Bodytype.Hero
+        hero.physicsBody?.collisionBitMask = 0
+        
         addChild(hero)
         addChild(castleDoor)
         addChild(doorWall)
