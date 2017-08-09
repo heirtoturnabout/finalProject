@@ -28,15 +28,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trL-Ub-lVL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="castleStairs" translatesAutoresizingMaskIntoConstraints="NO" id="trL-Ub-lVL">
                                 <rect key="frame" x="16" y="57" width="343" height="298"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wfg-1j-L7Q">
-                                <rect key="frame" x="16" y="370" width="343" height="128"/>
+                                <rect key="frame" x="16" y="370" width="343" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You are walking down a seemingly endless flight of stairs. The castle you are in is quiet and dark, the only remnants of a greedy king of legend. But as is the case with so many of these tales, rumors of his great treasures left in the castle are abundant, as are the rumors of danger. You can see something in the near darkness...</string>
+                                <string key="text">You are walking down a seemingly endless, swirling flight of stairs. The castle you are in is quiet and dark, the only remnants of a greedy king of legend. But as is the case with so many of these tales, rumors of his great treasures left in the castle are abundant, as are the rumors of danger. You can see something in the near darkness...</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -119,4 +119,7 @@
             <point key="canvasLocation" x="2118" y="87"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="castleStairs" width="970" height="545"/>
+    </resources>
 </document>

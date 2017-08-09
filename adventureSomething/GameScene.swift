@@ -9,48 +9,133 @@
 import SpriteKit
 import GameplayKit
 
+struct Bodytype {
+    
+    static let None : UInt32 = 0
+    static let Door : UInt32 = 1
+    static let Enemy : UInt32 = 1
+    static let Sword : UInt = 2
+    static let Hero : UInt32 = 4
+}
+
 class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
-    let heroStanding = SKSpriteNode(imageNamed: "FFhero")
-    let heroBackFacingPlayer = SKSpriteNode(imageNamed: "FFhero_4")
-    let heroStandingRight = SKSpriteNode(imageNamed: "FFhero_6")
-    let heroStandingLeft = SKSpriteNode(imageNamed: "FFhero_2")
-    let heroWalkingRight = SKSpriteNode(imageNamed: "FFhero_5")
-    let heroWalkingLeft = SKSpriteNode(imageNamed: "FFhero_3")
-    
+    var sword : SKSpriteNode = SKSpriteNode()
+    var hero = SKSpriteNode(imageNamed: "FFhero_4")
+    var isSwordDown : Bool = false
     let castleDoor = SKSpriteNode(imageNamed: "door")
+    let doorWall = SKSpriteNode(imageNamed: "doorAndWall")
+    let backgroundImage = SKSpriteNode(imageNamed: "floor")
+    
+    let heroSpeed: CGFloat = 100.0
+    
     
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
-        backgroundColor = SKColor.gray
+        
         
         let xCoord = size.width * 0.5
         let yCoord = size.width * 0.5
         
-        heroStanding.size.width = 60
-        heroStanding.size.height = 60
-        heroBackFacingPlayer.size.width = 60
-        heroBackFacingPlayer.size.height = 60
-        heroStandingLeft.size.width = 60
-        heroStandingLeft.size.height = 60
-        heroStandingRight.size.width = 60
-        heroStandingRight.size.height = 60
-        heroWalkingLeft.size.width = 60
-        heroWalkingRight.size.height = 60
+        hero.size.width = 60
+        hero.size.height = 60
         
         castleDoor.size.height = 70
         castleDoor.size.width = 70
         
-        heroBackFacingPlayer.position = CGPoint (x: xCoord, y: yCoord)
-        castleDoor.position = CGPoint (x: xCoord, y: yCoord + 400)
-        addChild(heroBackFacingPlayer)
+        backgroundImage.size.height = size.height * 2
+        backgroundImage.size.width = size.width * 2
+        backgroundImage.zPosition = -1
+        
+        hero.position = CGPoint (x: xCoord, y: yCoord)
+        doorWall.position = CGPoint (x: xCoord, y: yCoord + 400)
+        castleDoor.position = CGPoint (x: xCoord, y: yCoord + 450)
+        
+        hero.physicsBody = SKPhysicsBody(rectangleOf: hero.size)
+        hero.physicsBody?.isDynamic = true
+        hero.physicsBody?.categoryBitMask = Bodytype.Hero
+        hero.physicsBody?.contactTestBitMask = Bodytype.Door
+        hero.physicsBody?.collisionBitMask = 0
+        
+        addChild(hero)
         addChild(castleDoor)
+        addChild(doorWall)
+        addChild(backgroundImage)
+        
+        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipedUp))
+        swipeUp.direction = .up
+        view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipedDown))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
+        
+        let swipeLeft: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipedLeft))
+        swipeLeft.direction = .left
+        view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipedRight))
+        swipeRight.direction = .right
+        view.addGestureRecognizer(swipeRight)
+        
     }
     
+    func swipedUp (sender: UISwipeGestureRecognizer) {
+        var actionMove: SKAction
+        
+        
+        if (hero.position.y + heroSpeed >= size.height) {
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x, y: size.height - hero.size.height/2), duration: 0.4)
+        }
+        else {
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x, y: hero.position.y + heroSpeed), duration: 0.4)
+        }
+        hero.run(actionMove)
+        
+    }
+    
+    func swipedDown (sender: UISwipeGestureRecognizer) {
+        var actionMove: SKAction
+        
+        if (hero.position.y - heroSpeed <= 0){
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x, y: hero.size.height/2), duration: 0.4)
+        }
+        else {
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x, y: hero.position.y - heroSpeed), duration: 0.4)
+        }
+        hero.run(actionMove)
+
+    }
+    
+    func swipedLeft (sender: UISwipeGestureRecognizer) {
+        var actionMove: SKAction
+        
+        if (hero.position.x - heroSpeed <= 0) {
+            actionMove = SKAction.move(to: CGPoint(x: hero.size.width/2, y: hero.position.y), duration: 0.4)
+        }
+        else {
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x - heroSpeed, y: hero.position.y), duration: 0.4)
+        }
+        hero.run(actionMove)
+
+    }
+    
+    func swipedRight (sender: UISwipeGestureRecognizer) {
+        var actionMove: SKAction
+        
+        if (hero.position.x + heroSpeed >= size.width) {
+            actionMove = SKAction.move(to: CGPoint(x: size.width - hero.size.width/2, y: hero.position.y), duration :0.4)
+        }
+        else {
+            actionMove = SKAction.move(to: CGPoint(x: hero.position.x + heroSpeed, y: hero.position.y), duration: 0.4)
+        }
+        hero.run(actionMove)
+
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
@@ -81,11 +166,17 @@ class GameScene: SKScene {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+      	swordCall()
+    }
+    
+    func removeObject()
+    {
+        sword.removeFromParent()
+        isSwordDown = false
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -95,5 +186,20 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    func swordCall() {
+        if isSwordDown == false
+        {
+            isSwordDown = true
+            sword = SKSpriteNode(imageNamed: "swordUp")
+            
+            sword.position = CGPoint(x: hero.position.x, y: hero.position.y + 50)
+            sword.size.height = 50
+            sword.size.width = 50
+            
+            addChild(sword)
+            run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run(removeObject)])))
+        }
     }
 }
