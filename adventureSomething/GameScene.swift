@@ -278,7 +278,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return shouldExit
     }
     
-    func isOpening ->Bool
+    func isOpening() ->Bool
     {
         return shouldOpen
     }
