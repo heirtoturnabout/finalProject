@@ -132,10 +132,10 @@
             </objects>
             <point key="canvasLocation" x="1856.8" y="86.806596701649184"/>
         </scene>
-        <!--Story Controller-->
+        <!--Story Controller3-->
         <scene sceneID="GI7-2l-DQq">
             <objects>
-                <viewController id="zPq-eU-eiK" customClass="StoryController" customModule="adventureSomething" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zPq-eU-eiK" customClass="StoryController3" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Tr-KT-xZA"/>
                         <viewControllerLayoutGuide type="bottom" id="x9W-Z9-MBE"/>
@@ -189,15 +189,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="WSP-X5-leR" kind="show" identifier="gameToText2" id="47s-0F-DSj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKN-H6-Ghw" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2609" y="-512"/>
         </scene>
-        <!--Story Controller-->
+        <!--Story Controller4-->
         <scene sceneID="fL1-p8-BIB">
             <objects>
-                <viewController id="WSP-X5-leR" customClass="StoryController" customModule="adventureSomething" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WSP-X5-leR" customClass="StoryController4" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qUK-Wi-Djk"/>
                         <viewControllerLayoutGuide type="bottom" id="iQY-fh-BzD"/>

@@ -14,7 +14,7 @@ struct Bodytype {
     static let None : UInt32 = 0
     static let Door : UInt32 = 1
     static let Enemy : UInt32 = 1
-    static let Sword : UInt = 2
+    static let Sword : UInt32 = 2
     static let Hero : UInt32 = 4
 }
 
@@ -23,6 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     var shouldExit : Bool = false
+    var shouldOpen : Bool = false
     var sword : SKSpriteNode = SKSpriteNode()
     var hero = SKSpriteNode(imageNamed: "FFhero_4")
     var isSwordDown : Bool = false
@@ -65,6 +66,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         doorWall.physicsBody?.isDynamic = false
         doorWall.physicsBody?.categoryBitMask = Bodytype.Door
         doorWall.physicsBody?.contactTestBitMask = Bodytype.Hero
+        
+        sword.physicsBody = SKPhysicsBody(rectangleOf: sword.size)
+        sword.physicsBody?.isDynamic = false
+        sword.physicsBody?.categoryBitMask = Bodytype.Sword
+        sword.physicsBody?.contactTestBitMask = Bodytype.Door
         
         
         addChild(hero)
@@ -217,9 +223,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let bodyHero = contact.bodyA
         let bodyDoor = contact.bodyB
+        let bodySword = contact.bodyA
         
         let contactA = bodyHero.categoryBitMask
         let contactB = bodyDoor.categoryBitMask
+        let contactC = bodySword.categoryBitMask
         
         switch contactA {
             
@@ -247,6 +255,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
             }
             
+            switch contactC {
+                
+            case Bodytype.Door:
+                shouldOpen = true
+                break
+                
+            default:
+                
+                break
+                
+            }
+            
         default:
             
             break
@@ -256,5 +276,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func isExiting()->Bool
     {
         return shouldExit
+    }
+    
+    func isOpening ->Bool
+    {
+        return shouldOpen
     }
 }

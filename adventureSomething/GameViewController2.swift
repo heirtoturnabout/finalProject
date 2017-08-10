@@ -12,6 +12,9 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController2: UIViewController {
+    
+    var timer = Timer()
+    var scene = GameScene()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,5 +34,43 @@ class GameViewController2: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+    }
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    func updateCounting(){
+        if scene.isExiting()
+        {
+            switchScene()
+        }
+    }
+    
+    func switchScene()
+    {
+        scene = GameScene()
+        performSegue(withIdentifier: "gameToText2", sender: nil)
     }
 }

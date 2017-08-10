@@ -10,6 +10,7 @@
 		940AF58C1F3CB36400D527A3 /* GameViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58B1F3CB36400D527A3 /* GameViewController2.swift */; };
 		940AF58E1F3CD11200D527A3 /* GameViewControlller3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */; };
 		940AF5901F3CF95A00D527A3 /* StoryController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58F1F3CF95A00D527A3 /* StoryController2.swift */; };
+		940AF5921F3D039A00D527A3 /* StoryController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF5911F3D039A00D527A3 /* StoryController3.swift */; };
 		946103DB1F3B4F3000D67138 /* FFhero.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D51F3B4F3000D67138 /* FFhero.png */; };
 		946103DC1F3B4F3000D67138 /* FFhero_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D61F3B4F3000D67138 /* FFhero_2.png */; };
 		946103DD1F3B4F3000D67138 /* FFhero_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D71F3B4F3000D67138 /* FFhero_3.png */; };
@@ -30,6 +31,7 @@
 		940AF58B1F3CB36400D527A3 /* GameViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController2.swift; sourceTree = "<group>"; };
 		940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewControlller3.swift; sourceTree = "<group>"; };
 		940AF58F1F3CF95A00D527A3 /* StoryController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryController2.swift; sourceTree = "<group>"; };
+		940AF5911F3D039A00D527A3 /* StoryController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryController3.swift; sourceTree = "<group>"; };
 		946103D51F3B4F3000D67138 /* FFhero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero.png; sourceTree = "<group>"; };
 		946103D61F3B4F3000D67138 /* FFhero_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero_2.png; sourceTree = "<group>"; };
 		946103D71F3B4F3000D67138 /* FFhero_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero_3.png; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				940AF58B1F3CB36400D527A3 /* GameViewController2.swift */,
 				940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */,
 				940AF58F1F3CF95A00D527A3 /* StoryController2.swift */,
+				940AF5911F3D039A00D527A3 /* StoryController3.swift */,
 			);
 			path = adventureSomething;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				947860F41F3A1098007D8FD4 /* GameScene.swift in Sources */,
+				940AF5921F3D039A00D527A3 /* StoryController3.swift in Sources */,
 				947861061F3A35F2007D8FD4 /* StoryController.swift in Sources */,
 				947860F61F3A1098007D8FD4 /* GameViewController.swift in Sources */,
 				940AF58C1F3CB36400D527A3 /* GameViewController2.swift in Sources */,
