@@ -18,11 +18,11 @@ struct Bodytype {
     static let Hero : UInt32 = 4
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    
+    var shouldExit : Bool = false
     var sword : SKSpriteNode = SKSpriteNode()
     var hero = SKSpriteNode(imageNamed: "FFhero_4")
     var isSwordDown : Bool = false
@@ -61,14 +61,13 @@ class GameScene: SKScene {
         hero.physicsBody?.contactTestBitMask = Bodytype.Door
         hero.physicsBody?.collisionBitMask = 0
         
-        castleDoor.physicsBody = SKPhysicsBody(rectangleOf: castleDoor.size)
-        castleDoor.physicsBody?.isDynamic = true
-        castleDoor.physicsBody?.categoryBitMask = Bodytype.Door
-        hero.physicsBody?.contactTestBitMask = Bodytype.Hero
-        hero.physicsBody?.collisionBitMask = 0
+        doorWall.physicsBody = SKPhysicsBody(rectangleOf: doorWall.size, center: CGPoint(x: 0, y: -20))
+        doorWall.physicsBody?.isDynamic = false
+        doorWall.physicsBody?.categoryBitMask = Bodytype.Door
+        doorWall.physicsBody?.contactTestBitMask = Bodytype.Hero
+        
         
         addChild(hero)
-        addChild(castleDoor)
         addChild(doorWall)
         addChild(backgroundImage)
         
@@ -88,6 +87,12 @@ class GameScene: SKScene {
         swipeRight.direction = .right
         view.addGestureRecognizer(swipeRight)
         
+        let x : CGFloat = 0
+        let y : CGFloat = 0
+        var vector = CGVector(dx: x, dy: y)
+        physicsWorld.gravity = vector
+        physicsWorld.contactDelegate = self
+
     }
     
     func swipedUp (sender: UISwipeGestureRecognizer) {
@@ -207,5 +212,49 @@ class GameScene: SKScene {
             addChild(sword)
             run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run(removeObject)])))
         }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let bodyHero = contact.bodyA
+        let bodyDoor = contact.bodyB
+        
+        let contactA = bodyHero.categoryBitMask
+        let contactB = bodyDoor.categoryBitMask
+        
+        switch contactA {
+            
+        case Bodytype.Door:
+            
+            switch contactB {
+                case Bodytype.Hero:
+                shouldExit = true
+                break
+                //They Collided
+            default:
+                
+            break
+            }
+            
+        case Bodytype.Hero:
+            switch contactB
+            {
+                case Bodytype.Door:
+                shouldExit = true
+                break
+                
+            default:
+                
+            break
+            }
+            
+        default:
+            
+            break
+        }
+    }
+    
+    func isExiting()->Bool
+    {
+        return shouldExit
     }
 }

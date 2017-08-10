@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940AF58C1F3CB36400D527A3 /* GameViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58B1F3CB36400D527A3 /* GameViewController2.swift */; };
+		940AF58E1F3CD11200D527A3 /* GameViewControlller3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */; };
+		940AF5901F3CF95A00D527A3 /* StoryController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AF58F1F3CF95A00D527A3 /* StoryController2.swift */; };
 		946103DB1F3B4F3000D67138 /* FFhero.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D51F3B4F3000D67138 /* FFhero.png */; };
 		946103DC1F3B4F3000D67138 /* FFhero_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D61F3B4F3000D67138 /* FFhero_2.png */; };
 		946103DD1F3B4F3000D67138 /* FFhero_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 946103D71F3B4F3000D67138 /* FFhero_3.png */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		940AF58B1F3CB36400D527A3 /* GameViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController2.swift; sourceTree = "<group>"; };
+		940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewControlller3.swift; sourceTree = "<group>"; };
+		940AF58F1F3CF95A00D527A3 /* StoryController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryController2.swift; sourceTree = "<group>"; };
 		946103D51F3B4F3000D67138 /* FFhero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero.png; sourceTree = "<group>"; };
 		946103D61F3B4F3000D67138 /* FFhero_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero_2.png; sourceTree = "<group>"; };
 		946103D71F3B4F3000D67138 /* FFhero_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFhero_3.png; sourceTree = "<group>"; };
@@ -89,12 +95,15 @@
 				947860ED1F3A1097007D8FD4 /* AppDelegate.swift */,
 				947860F11F3A1098007D8FD4 /* Actions.sks */,
 				947860F31F3A1098007D8FD4 /* GameScene.swift */,
-				947860F51F3A1098007D8FD4 /* GameViewController.swift */,
 				947860F71F3A1098007D8FD4 /* Main.storyboard */,
 				947860FA1F3A1098007D8FD4 /* Assets.xcassets */,
 				947860FC1F3A1098007D8FD4 /* LaunchScreen.storyboard */,
 				947860FF1F3A1098007D8FD4 /* Info.plist */,
 				947861051F3A35F2007D8FD4 /* StoryController.swift */,
+				947860F51F3A1098007D8FD4 /* GameViewController.swift */,
+				940AF58B1F3CB36400D527A3 /* GameViewController2.swift */,
+				940AF58D1F3CD11200D527A3 /* GameViewControlller3.swift */,
+				940AF58F1F3CF95A00D527A3 /* StoryController2.swift */,
 			);
 			path = adventureSomething;
 			sourceTree = "<group>";
@@ -181,7 +190,10 @@
 				947860F41F3A1098007D8FD4 /* GameScene.swift in Sources */,
 				947861061F3A35F2007D8FD4 /* StoryController.swift in Sources */,
 				947860F61F3A1098007D8FD4 /* GameViewController.swift in Sources */,
+				940AF58C1F3CB36400D527A3 /* GameViewController2.swift in Sources */,
+				940AF5901F3CF95A00D527A3 /* StoryController2.swift in Sources */,
 				947860EE1F3A1097007D8FD4 /* AppDelegate.swift in Sources */,
+				940AF58E1F3CD11200D527A3 /* GameViewControlller3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

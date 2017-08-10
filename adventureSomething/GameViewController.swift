@@ -12,12 +12,14 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    var timer = Timer()
+    var scene = GameScene()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        scheduledTimerWithTimeInterval()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            let scene = GameScene (size: view.bounds.size)
+            scene = GameScene (size: view.bounds.size)
 
                 // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
@@ -52,5 +54,23 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    func updateCounting(){
+        if scene.isExiting()
+        {
+            switchScene()
+        }
+    }
+    
+    func switchScene()
+    {
+        scene = GameScene()
+        performSegue(withIdentifier: "gameToText", sender: nil)
     }
 }
