@@ -12,7 +12,6 @@ class StoryController2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HERE")
     }
     
     override var shouldAutorotate: Bool {

@@ -167,6 +167,9 @@
                                 <rect key="frame" x="16" y="563" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Continue on"/>
+                                <connections>
+                                    <segue destination="kwf-9j-ywa" kind="show" id="Nlm-ZM-Ktt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -174,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfm-oB-XP1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2598" y="483"/>
+            <point key="canvasLocation" x="2609" y="592"/>
         </scene>
         <!--Game View Controller2-->
         <scene sceneID="mA8-aU-HnS">
@@ -232,6 +235,9 @@
                                 <rect key="frame" x="16" y="563" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Continue on"/>
+                                <connections>
+                                    <segue destination="we1-u0-3dg" kind="show" id="fLG-l3-J6S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -254,14 +260,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <segue destination="kwf-9j-ywa" kind="show" identifier="gameToText3" id="ang-db-dXy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IAC-Zx-2OH" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3406" y="483"/>
+            <point key="canvasLocation" x="3406" y="191"/>
+        </scene>
+        <!--Story Controller4-->
+        <scene sceneID="XcT-jy-7Pw">
+            <objects>
+                <viewController id="kwf-9j-ywa" customClass="StoryController4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tEo-DK-OR5"/>
+                        <viewControllerLayoutGuide type="bottom" id="N0I-Rc-BWW"/>
+                    </layoutGuides>
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="jAV-RW-GqO" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Treasure?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ny-Js-aYZ">
+                                <rect key="frame" x="16" y="28" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="treasureChest" translatesAutoresizingMaskIntoConstraints="NO" id="8I3-EF-7DY">
+                                <rect key="frame" x="16" y="57" width="343" height="298"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5tb-2t-wTu">
+                                <rect key="frame" x="16" y="370" width="343" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Suddenly, a treasure chest is staring you in the face. You reach for a lockpick, but realize there is no lock on the chest. You pry it open to see... nothing. Was someone here before you? Is this a trap?  You hear something approaching behind you. You draw your sword and take a breath...</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rb3-HQ-vxA">
+                                <rect key="frame" x="16" y="563" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="To be continued..."/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SjU-UL-XK0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4372" y="483"/>
         </scene>
     </scenes>
     <resources>
         <image name="castleStairs" width="970" height="545"/>
         <image name="door" width="512" height="512"/>
+        <image name="treasureChest" width="1064" height="873"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Nlm-ZM-Ktt"/>
+    </inferredMetricsTieBreakers>
 </document>

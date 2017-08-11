@@ -14,19 +14,20 @@ import GameplayKit
 class GameViewController2: UIViewController {
     
     var timer = Timer()
-    var scene = GameScene()
+    var scene2 = GameScene2()
     override func viewDidLoad() {
         super.viewDidLoad()
+        scheduledTimerWithTimeInterval()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            let scene = GameScene (size: view.bounds.size)
+            let scene2 = GameScene2 (size: view.bounds.size)
             
             // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
+            scene2.scaleMode = .aspectFill
             
             // Present the scene
-            view.presentScene(scene)
+            view.presentScene(scene2)
             
             
             view.ignoresSiblingOrder = true
@@ -58,11 +59,11 @@ class GameViewController2: UIViewController {
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
     func updateCounting(){
-        if scene.isExiting()
+        if scene2.isExiting()
         {
             switchScene()
         }
@@ -70,7 +71,7 @@ class GameViewController2: UIViewController {
     
     func switchScene()
     {
-        scene = GameScene()
+        scene2 = GameScene2()
         performSegue(withIdentifier: "gameToText2", sender: nil)
     }
 }

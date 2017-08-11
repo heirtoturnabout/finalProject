@@ -9,20 +9,10 @@
 import SpriteKit
 import GameplayKit
 
-struct Bodytype {
-    
-    static let None : UInt32 = 0
-    static let Door : UInt32 = 1
-    static let TreasureChest : UInt32 = 1
-    static let Sword : UInt32 = 2
-    static let Hero : UInt32 = 4
-}
-
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene2: SKScene, SKPhysicsContactDelegate {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    var shouldExit : Bool = false
     var shouldOpen : Bool = false
     var shouldFinal : Bool = false
     var sword : SKSpriteNode = SKSpriteNode()
@@ -32,13 +22,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let backgroundImage = SKSpriteNode(imageNamed: "floor")
     let treasureChestImage = SKSpriteNode(imageNamed: "treasureChestClosed")
     
+    var shouldExit : Bool = false
+    
     let heroSpeed: CGFloat = 100.0
     
     
     override func didMove(to view: SKView) {
         
         // Get label node from scene and store it for use later
-        
         
         let xCoord = size.width * 0.5
         let yCoord = size.width * 0.5
@@ -66,7 +57,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         doorWall.physicsBody = SKPhysicsBody(rectangleOf: doorWall.size, center: CGPoint(x: 0, y: -10))
         doorWall.physicsBody?.isDynamic = false
         doorWall.physicsBody?.categoryBitMask = Bodytype.Door
-        doorWall.physicsBody?.contactTestBitMask = Bodytype.Hero
         doorWall.physicsBody?.contactTestBitMask = Bodytype.Sword
         
         treasureChestImage.physicsBody = SKPhysicsBody(rectangleOf: treasureChestImage.size)
@@ -99,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var vector = CGVector(dx: x, dy: y)
         physicsWorld.gravity = vector
         physicsWorld.contactDelegate = self
-
+        
     }
     
     func swipedUp (sender: UISwipeGestureRecognizer) {
@@ -126,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             actionMove = SKAction.move(to: CGPoint(x: hero.position.x, y: hero.position.y - heroSpeed), duration: 0.4)
         }
         hero.run(actionMove)
-
+        
     }
     
     func swipedLeft (sender: UISwipeGestureRecognizer) {
@@ -139,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             actionMove = SKAction.move(to: CGPoint(x: hero.position.x - heroSpeed, y: hero.position.y), duration: 0.4)
         }
         hero.run(actionMove)
-
+        
     }
     
     func swipedRight (sender: UISwipeGestureRecognizer) {
@@ -152,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             actionMove = SKAction.move(to: CGPoint(x: hero.position.x + heroSpeed, y: hero.position.y), duration: 0.4)
         }
         hero.run(actionMove)
-
+        
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -176,7 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-      	swordCall()
+        swordCall()
     }
     
     func removeObject()
@@ -202,6 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if isSwordDown == false
         {
             isSwordDown = true
+            
             sword = SKSpriteNode(imageNamed: "swordUp")
             
             sword.position = CGPoint(x: hero.position.x, y: hero.position.y + 50)
@@ -209,76 +200,74 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             sword.size.width = 50
             
             sword.physicsBody = SKPhysicsBody(rectangleOf: sword.size)
-            sword.physicsBody?.isDynamic = false
+            sword.physicsBody?.isDynamic = true
             sword.physicsBody?.categoryBitMask = Bodytype.Sword
             sword.physicsBody?.contactTestBitMask = Bodytype.Door
             
             addChild(sword)
             run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run(removeObject)])))
+            shouldExit = true
         }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        let bodyHero = contact.bodyA
         let bodyDoor = contact.bodyB
         let bodySword = contact.bodyA
         
-        let contactA = bodyHero.categoryBitMask
         let contactB = bodyDoor.categoryBitMask
         let contactC = bodySword.categoryBitMask
         
-        switch contactA {
-            
+        
+        switch contactC {
         case Bodytype.Door:
-            
             switch contactB {
-                case Bodytype.Hero:
-                shouldExit = true
+            case Bodytype.Sword:
+                print("HIT")
+                pleaseWork()
                 break
                 //They Collided
-            
+                
             default:
                 
-            break
+                break
             }
             
-        case Bodytype.Hero:
+        case Bodytype.Sword:
             switch contactB
             {
-                case Bodytype.Door:
-                shouldExit = true
+            case Bodytype.Door:
+                print("HIT")
+                pleaseWork()
                 break
                 
             default:
                 
-            break
+                break
                 
             }
-            
-            
         default:
             
             break
         }
-        
     }
     
-    func isExiting()->Bool
+    func isExiting()-> Bool
     {
+        print (shouldExit)
         return shouldExit
-    }
-    
-    func isOpening() ->Bool
-    {
-        return shouldOpen
     }
     
     func finalScene() ->Bool
     {
-        if shouldOpen == true{
+        if shouldOpen == true
+        {
             addChild(treasureChestImage)
             removeWall()
         }
         return shouldFinal
+    }
+    
+    func pleaseWork() {
+        shouldExit = true
     }
 }
